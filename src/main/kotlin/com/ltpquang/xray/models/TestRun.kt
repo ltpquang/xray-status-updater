@@ -19,12 +19,12 @@ data class TestRun(
     @SerializedName("startedOnIso") val startedOnIso : String = "",
     @SerializedName("finishedOnIso") val finishedOnIso : String = "",
     @SerializedName("duration") val duration : Int = 0,
-    @SerializedName("defects") val defects : List<String> = emptyList(),
-    @SerializedName("evidences") val evidences : List<String> = emptyList(),
-    @SerializedName("scenarioOutline") val scenarioOutline : String = "",
-    @SerializedName("examples") val examples : List<Example> = emptyList(),
-    @SerializedName("testEnvironments") val testEnvironments : List<String> = emptyList(),
-    @SerializedName("fixVersions") val fixVersions : List<FixVersion> = emptyList()
+//    @SerializedName("defects") val defects : List<String> = emptyList(),
+//    @SerializedName("evidences") val evidences : List<String> = emptyList(),
+    @SerializedName("scenarioOutline") val scenarioOutline : String = ""
+//    @SerializedName("examples") val examples : List<Example> = emptyList(),
+//    @SerializedName("testEnvironments") val testEnvironments : List<String> = emptyList(),
+//    @SerializedName("fixVersions") val fixVersions : List<FixVersion> = emptyList()
 ) {
     class Deserialize
 }
