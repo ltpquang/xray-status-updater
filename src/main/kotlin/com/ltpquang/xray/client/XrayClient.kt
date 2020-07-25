@@ -7,6 +7,7 @@ import okhttp3.Credentials
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import okhttp3.internal.EMPTY_REQUEST
 
 
 /**
@@ -34,7 +35,8 @@ class XrayClient(host: String, username: String, password: String) {
 
     private fun getTestRun(testIssueKey: String, testExecIssueKey: String): TestRun {
         val req = Request.Builder()
-            .url(xrayUrl.getTestRun(testIssueKey, testExecIssueKey))
+            .get()
+            .url(xrayUrl.getTestRunUrl(testIssueKey, testExecIssueKey))
             .build()
         val res = client.newCall(req).execute()
         val result = Gson().fromJson(res.body!!.charStream(), TestRun::class.java)
@@ -42,7 +44,16 @@ class XrayClient(host: String, username: String, password: String) {
         return result
     }
 
-    fun setStatus(testIssueKey: String, testExecIssueKey: String, status: Status) {
+    private fun setTestRunStatus(id: Int, status: Status) {
+        val req = Request.Builder()
+            .put(EMPTY_REQUEST)
+            .url(xrayUrl.updateTestRunStatusUrl(id, status))
+            .build()
+        val res = client.newCall(req).execute()
+    }
 
+    fun setStatus(testIssueKey: String, testExecIssueKey: String, status: Status) {
+        val testRun = getTestRun(testIssueKey, testExecIssueKey)
+        setTestRunStatus(testRun.id, status)
     }
 }

@@ -1,5 +1,6 @@
 package com.ltpquang.xray.client
 
+import com.ltpquang.xray.models.Status
 import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import java.net.URL
@@ -10,16 +11,24 @@ import java.net.URL
  */
 
 class XrayUrl(base: String) {
-
-    private val httpBuilder = base.toHttpUrlOrNull()!!.newBuilder()
+    private val httpUrl = base.toHttpUrlOrNull()!!.newBuilder()
         .addPathSegments("rest/raven/1.0/api")
+        .build()
 
-    fun getTestRun(testIssueKey: String, testExecIssueKey: String): HttpUrl {
-        return httpBuilder
+    fun getTestRunUrl(testIssueKey: String, testExecIssueKey: String): HttpUrl {
+        return httpUrl.newBuilder()
             .addPathSegment("testrun")
             .addQueryParameter("testIssueKey", testIssueKey)
             .addQueryParameter("testExecIssueKey", testExecIssueKey)
             .build()
     }
 
+    fun updateTestRunStatusUrl(testRunId: Int, status: Status): HttpUrl {
+        return httpUrl.newBuilder()
+            .addPathSegment("testrun")
+            .addPathSegment(testRunId.toString())
+            .addPathSegment("status")
+            .addQueryParameter("status", status.toString())
+            .build()
+    }
 }
