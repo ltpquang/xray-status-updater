@@ -1,2 +1,3 @@
-# xray-status-updater
-Xpand IT's Xray Test Run Status Updater
+# Xray Status Updater
+
+This deadly simple package help updating Xpand IT' [Xray](https://confluence.xpand-it.com/display/XRAY/v2.0) Test Run status. 
