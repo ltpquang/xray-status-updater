@@ -3,7 +3,6 @@ package com.ltpquang.xray.client
 import com.ltpquang.xray.models.Status
 import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
-import java.net.URL
 
 /**
  * Created by Quang Le (quangltp) on 7/25/20

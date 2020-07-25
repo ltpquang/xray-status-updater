@@ -25,6 +25,4 @@ data class TestRun(
 //    @SerializedName("examples") val examples : List<Example> = emptyList(),
 //    @SerializedName("testEnvironments") val testEnvironments : List<String> = emptyList(),
 //    @SerializedName("fixVersions") val fixVersions : List<FixVersion> = emptyList()
-) {
-    class Deserialize
-}
+)
