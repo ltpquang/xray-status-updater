@@ -8,6 +8,7 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.internal.EMPTY_REQUEST
+import okhttp3.logging.HttpLoggingInterceptor
 
 
 /**
@@ -20,6 +21,9 @@ class XrayClient(host: String, username: String, password: String) {
     private val client: OkHttpClient
 
     init {
+        val logging = HttpLoggingInterceptor()
+        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
+
         client = OkHttpClient.Builder()
             .addInterceptor { chain: Interceptor.Chain ->
                 val req = chain.request()
@@ -30,6 +34,7 @@ class XrayClient(host: String, username: String, password: String) {
                     .build()
                 return@addInterceptor chain.proceed(authReq)
             }
+            .addInterceptor(logging)
             .build()
     }
 
