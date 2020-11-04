@@ -21,7 +21,7 @@ class XrayClient(host: String, username: String, password: String) {
 
     init {
         val logging = HttpLoggingInterceptor()
-        logging.setLevel(HttpLoggingInterceptor.Level.BODY)
+        logging.setLevel(HttpLoggingInterceptor.Level.BASIC)
 
         client = OkHttpClient.Builder()
             .addInterceptor { chain: Interceptor.Chain ->
